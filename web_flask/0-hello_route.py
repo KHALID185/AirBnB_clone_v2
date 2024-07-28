@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Run an app with Flask web framework
+script to run application with flask
 """
 from flask import Flask
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
-    """ Function that says Hello """
+    """ fct that output hello """
     return 'Hello HBNB!'
 
 

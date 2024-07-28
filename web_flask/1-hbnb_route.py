@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-""" Starts a Flask web application """
+""" script to start the app """
 from flask import Flask
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_hbnb():
-    """ Function that sys Hello Hbnb"""
+    """ a fct  that seys Hello Hbnb"""
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb')
 def hbnb():
-    """ Function that says hbnb """
+    """ a fct  that output hbnb """
     return 'HBNB'
 
 
