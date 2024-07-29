@@ -1,27 +1,31 @@
 #!/usr/bin/python3
-""" a script to start a flask app """
-from flask import Flask, render_template
-from models import storage
+""" this module contains a script that starts a Flask web application
+    the web application"""
 from models import *
+from models.base_model import BaseModel, Base
+from models.user import User
+from models.place import Place
 from models.state import State
-
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from flask import Flask, render_template
 app = Flask(__name__)
-app.url_map.strict_slashes = False
+classes = {"Amenity": Amenity, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
+
+
+@app.route('/states_list', strict_slashes=False)
+def states_list():
+    """ display HTML page with list of states """
+    states = storage.all(classes["State"]).values()
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
-def dispose(exception):
-    """ a fct to remove the session """
+def remove_SQLalc_session(exception):
+    """ close storage"""
     storage.close()
-
-
-@app.route('/states_list')
-def states():
-    """ fct that show all state """
-    states = storage.all(State)
-    states_list = list(states.values())
-    return render_template('7-states_list.html', states=states_list)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
