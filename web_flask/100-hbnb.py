@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Starts a flask web application """
+""" a script to start a flask app """
 from flask import Flask, render_template
 from models import storage
 from models.amenity import Amenity
@@ -12,7 +12,7 @@ app.url_map.strict_slashes = False
 
 @app.teardown_appcontext
 def dispose(exception):
-    """ Exit SQLAlchemy session """
+    """ Exit the session of sql """
     storage.close()
 
 
